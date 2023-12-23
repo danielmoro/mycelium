@@ -3,6 +3,9 @@ import ProjectDescriptionHelpers
 
 let project = Project(
 	name: "Users",
+	packages: [
+		.local(path: .relativeToRoot("../../mycelium"))
+	],
 	settings: .projectSettings,
 	targets: [
 		Target(
@@ -13,6 +16,9 @@ let project = Project(
 			sources: "Interface/**",
 			scripts: [
 				.pre(script: .lintScript(at: "$SRCROOT/Interface"), name: "Lint", basedOnDependencyAnalysis: false)
+			],
+			dependencies: [
+				.package(product: "Mycelium")
 			]
 		),
 		Target(

@@ -8,16 +8,16 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "mycelium",
-            targets: ["mycelium"]),
+            name: "Mycelium",
+            targets: ["Mycelium"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "mycelium"),
+            name: "Mycelium"),
         .testTarget(
-            name: "myceliumTests",
-            dependencies: ["mycelium"]),
+            name: "MyceliumTests",
+            dependencies: ["Mycelium"]),
     ]
 )

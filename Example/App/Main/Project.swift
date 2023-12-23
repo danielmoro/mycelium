@@ -5,9 +5,6 @@ import ProjectDescriptionHelpers
 let project = Project(
 	name: "Mycelium Grow",
 	organizationName: "Moroverse", 
-	packages: [
-		.local(path: "../../../../mycelium")
-	],
 	settings: .projectSettings,
 	targets: [
 		Target(
@@ -21,7 +18,6 @@ let project = Project(
 				.pre(script: .lintScript(at: "$SRCROOT/Sources"), name: "Lint", basedOnDependencyAnalysis: false)
 			],
 			dependencies: [
-				.package(product: "mycelium"),
 				.project(target: "UsersCore", path: .relativeToRoot("App/Features/Users")),
 				.project(target: "UsersUI", path: .relativeToRoot("App/Features/Users"))
 			],
