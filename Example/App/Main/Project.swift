@@ -21,7 +21,9 @@ let project = Project(
 				.pre(script: .lintScript(at: "$SRCROOT/Sources"), name: "Lint", basedOnDependencyAnalysis: false)
 			],
 			dependencies: [
-				.package(product: "mycelium")
+				.package(product: "mycelium"),
+				.project(target: "UsersCore", path: .relativeToRoot("App/Features/Users")),
+				.project(target: "UsersUI", path: .relativeToRoot("App/Features/Users"))
 			],
 			settings: .targetSettings
 		),
