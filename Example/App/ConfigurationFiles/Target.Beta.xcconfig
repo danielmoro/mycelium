@@ -1,0 +1,3 @@
+
+CUSTOM_FLAG = "Target.Beta"
+PRODUCT_BUNDLE_IDENTIFIER = com.moroverse.MyceliumGrow-Beta

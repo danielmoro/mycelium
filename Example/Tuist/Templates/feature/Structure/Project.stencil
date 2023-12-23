@@ -1,0 +1,97 @@
+import ProjectDescription
+import ProjectDescriptionHelpers
+
+let project = Project(
+	name: "{{ name }}",
+	settings: .projectSettings,
+	targets: [
+		Target(
+			name: "{{ name }}Interface",
+			destinations: {{ destinations }},
+			product: .framework,
+			bundleId: "{{ bundleID }}.{{ name }}Interface",
+			sources: "Interface/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/Interface"), name: "Lint", basedOnDependencyAnalysis: false)
+			]
+		),
+		Target(
+			name: "{{ name }}Core",
+			destinations: {{ destinations }},
+			product: .framework,
+			bundleId: "{{ bundleID }}.{{ name }}Core",
+			sources: "Core/Sources/**",
+			resources: "Core/Resources/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/Core/Sources"), name: "Lint", basedOnDependencyAnalysis: false)
+			],
+			dependencies: [
+				.target(name: "{{ name }}Interface"),
+				.project(target: "CoreAbsolute", path: .relativeToRoot("App/Shared/CoreAbsolute")),
+				.external(name: "CasePaths")
+			]
+		),
+		Target(
+			name: "{{ name }}Testing",
+			destinations: {{ destinations }},
+			product: .framework,
+			bundleId: "{{ bundleID }}.{{ name }}Testing",
+			sources: "Testing/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/Testing"), name: "Lint", basedOnDependencyAnalysis: false)
+			],
+			dependencies: [
+				.target(name: "{{ name }}Interface")
+			]
+		),
+		Target(
+			name: "{{ name }}UI",
+			destinations: {{ destinations }},
+			product: .framework,
+			bundleId: "{{ bundleID }}.{{ name }}UI",
+			sources: "UI/Sources/**",
+			resources: "UI/Resources/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/UI/Sources"), name: "Lint", basedOnDependencyAnalysis: false)
+			],
+			dependencies: [
+				.target(name: "{{ name }}Core"),
+				.target(name: "{{ name }}Testing"),
+				.external(name: "SwiftUINavigation")
+			]
+		),
+		Target(
+			name: "{{ name }}Tests",
+			destinations: {{ destinations }},
+			product: .unitTests,
+			bundleId: "{{ bundleID }}.{{ name }}Tests",
+			sources: "Tests/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/Tests"), name: "Lint", basedOnDependencyAnalysis: false)
+			],
+			dependencies: [
+				.target(name: "{{ name }}Core"),
+				.target(name: "{{ name }}Testing"),
+				.target(name: "{{ name }}UI"),
+				.project(target: "XCTAbsolute", path: .relativeToRoot("App/Shared/XCTAbsolute")),
+				.external(name: "ConcurrencyExtras"),
+				.external(name: "ViewInspector")
+			]
+		),
+		Target(
+			name: "{{ name }}Example",
+			destinations: {{ destinations }},
+			product: .app,
+			bundleId: "{{ bundleID }}.{{ name }}Example",
+			sources: "Example/Sources/**",
+			resources: "Example/Resources/**",
+			scripts: [
+				.pre(script: .lintScript(at: "$SRCROOT/Example/Sources"), name: "Lint")
+			],
+			dependencies: [
+				.target(name: "{{ name }}Core"),
+				.target(name: "{{ name }}UI")
+			]
+		)
+	]
+)

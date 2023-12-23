@@ -1,0 +1,16 @@
+import {{ name }}Core
+import {{ name }}Interface
+import {{ name }}Testing
+import SwiftUI
+import SwiftUINavigation
+
+public struct {{ name }}UIView: View {
+	public var body: some View {
+		Text("Hi")
+	}
+}
+
+#Preview {
+	{{ name }}UIView()
+}
+

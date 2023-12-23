@@ -1,0 +1,42 @@
+import {{ name }}Interface
+
+struct {{ name }}InterfaceSpy: {{ name }}Interface {
+
+}
+
+let mockData: [Int] = [
+	1,
+	2
+]
+
+public enum Mock{{ name }}Interface {
+	private struct Mocker: {{ name }}Interface {
+		var result: Result<[Int], Error>
+		var delay: Duration?
+
+		//TODO: - Replace with protocol implementation
+		func load() async throws -> [Int] {
+			if let delay {
+				try await Task.sleep(for: delay)
+			}
+
+			return try result.get()
+		}
+	}
+
+	public static var regular: {{ name }}Interface {
+		Mocker(result: .success(mockData))
+	}
+
+	public static var empty: {{ name }}Interface {
+		Mocker(result: .success([]))
+	}
+
+	public static var loading: {{ name }}Interface {
+		Mocker(result: .success(mockData), delay: .seconds(3))
+	}
+
+	public static func failing(_ error: Error) -> {{ name }}Interface {
+		Mocker(result: .failure(error))
+	}
+}

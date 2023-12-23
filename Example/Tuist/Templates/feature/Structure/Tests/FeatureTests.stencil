@@ -1,0 +1,17 @@
+import XCTest
+@testable import {{ name }}Testing
+@testable import {{ name }}Core
+import {{ name }}Interface
+import ConcurrencyExtras
+
+final class {{ name }}Tests: XCTestCase {
+	override func invokeTest() {
+		withMainSerialExecutor {
+			super.invokeTest()
+		}
+	}
+	
+    func test_fails() throws {
+		XCTFail()
+    }
+}

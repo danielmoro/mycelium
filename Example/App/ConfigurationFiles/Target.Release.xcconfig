@@ -1,0 +1,3 @@
+
+CUSTOM_FLAG = "Target.Release"
+PRODUCT_BUNDLE_IDENTIFIER = om.moroverse.MyceliumGrow

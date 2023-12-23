@@ -1,0 +1,3 @@
+
+CUSTOM_FLAG = "Target.Debug"
+PRODUCT_BUNDLE_IDENTIFIER = om.moroverse.MyceliumGrow-Debug
