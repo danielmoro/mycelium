@@ -73,7 +73,7 @@ let project = Project(
 				.target(name: "{{ name }}Core"),
 				.target(name: "{{ name }}Testing"),
 				.target(name: "{{ name }}UI"),
-				.project(target: "XCTAbsolute", path: .relativeToRoot("App/Shared/XCTAbsolute")),
+				.project(target: "XCTMycelium", path: .relativeToRoot("App/Shared/XCTMycelium")),
 				.external(name: "ConcurrencyExtras"),
 				.external(name: "ViewInspector")
 			]

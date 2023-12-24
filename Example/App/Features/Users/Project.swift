@@ -75,6 +75,7 @@ let project = Project(
 				.pre(script: .lintScript(at: "$SRCROOT/Tests"), name: "Lint", basedOnDependencyAnalysis: false)
 			],
 			dependencies: [
+				.project(target: "XCTMycelium", path: .relativeToRoot("App/Shared/XCTMycelium")),
 				.target(name: "UsersCore"),
 				.target(name: "UsersTesting"),
 				.target(name: "UsersUI"),

@@ -10,8 +10,8 @@ public final class User: Entity<UserID, UserEvent> {
 	public struct Name {
 		let value: String
 
-		init(value: String?) throws {
-			guard let value else {
+		public init(value: String?) throws {
+			guard let value, value.isEmpty == false else {
 				throw Error.invalidNameValue
 			}
 
@@ -26,8 +26,8 @@ public final class User: Entity<UserID, UserEvent> {
 		super.init(id: id)
 	}
 
-	public static func make(name: Name) -> User {
-		let id = UUID()
+	public static func make(name: Name, uuidProvider: () -> UUID = UUID.init) -> User {
+		let id = uuidProvider()
 		let user = User(id: id, name: name)
 
 		user.raise(event: .userCreated(id: id))
@@ -35,6 +35,6 @@ public final class User: Entity<UserID, UserEvent> {
 	}
 }
 
-public enum UserEvent: DomainEvent {
+public enum UserEvent: DomainEvent, Equatable {
 	case userCreated(id: UserID)
 }
