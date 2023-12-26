@@ -1,8 +1,8 @@
 import XCTest
 
 public extension XCTestCase {
-	func XCTThrowsExactly<T, E>(
-		_ expression: @autoclosure () throws -> T,
+	func XCTThrowsExactly<E>(
+		_ expression: @autoclosure () throws -> some Any,
 		error expectedError: E,
 		_ message: @autoclosure () -> String = "",
 		file: StaticString = #filePath,

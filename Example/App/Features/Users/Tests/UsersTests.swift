@@ -2,6 +2,7 @@ import ConcurrencyExtras
 import UsersInterface
 import XCTest
 import XCTMycelium
+@testable import UsersCore
 
 final class UsersTests: XCTestCase {
 	override func invokeTest() {
@@ -11,9 +12,9 @@ final class UsersTests: XCTestCase {
 	}
 
 	func test_make_raisesDomainEvent() throws {
-		let validName = try XCTUnwrap(User.Name(value: "Valid Name Value"))
+		let validName = try XCTUnwrap(UserEntity.Name(value: "Valid Name Value"))
 
-		let sut = User.make(name: validName, uuidProvider: { UUID.incrementing })
+		let sut = UserEntity.make(name: validName, uuidProvider: { UUID.incrementing })
 
 		XCTAssertEqual(sut.events, [
 			.userCreated(id: UUID(uuidString: "00000000-0000-0000-0000-000000000000")!)

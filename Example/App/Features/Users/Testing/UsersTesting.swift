@@ -1,15 +1,15 @@
 import UsersInterface
 
-//struct UsersInterfaceSpy: UsersInterface {
+// struct UsersInterfaceSpy: UsersInterface {
 //
-//}
+// }
 //
-//let mockData: [Int] = [
+// let mockData: [Int] = [
 //	1,
 //	2
-//]
+// ]
 //
-//public enum MockUsersInterface {
+// public enum MockUsersInterface {
 //	private struct Mocker: UsersInterface {
 //		var result: Result<[Int], Error>
 //		var delay: Duration?
@@ -39,4 +39,4 @@ import UsersInterface
 //	public static func failing(_ error: Error) -> UsersInterface {
 //		Mocker(result: .failure(error))
 //	}
-//}
+// }

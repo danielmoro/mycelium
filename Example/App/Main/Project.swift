@@ -4,7 +4,7 @@ import ProjectDescriptionHelpers
 
 let project = Project(
 	name: "Mycelium Grow",
-	organizationName: "Moroverse", 
+	organizationName: "Moroverse",
 	settings: .projectSettings,
 	targets: [
 		Target(

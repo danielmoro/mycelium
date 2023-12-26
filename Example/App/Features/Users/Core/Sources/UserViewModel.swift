@@ -1,5 +1,0 @@
-import UsersInterface
-
-class UsersViewModel {
-
-}

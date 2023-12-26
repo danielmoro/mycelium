@@ -14,7 +14,7 @@ let template = Template(
 		.optional("destinations", default: "[.iPhone, .iPad]")
 	],
 	items: [
-//		.string(
+		//		.string(
 //			path: "Project.swift",
 //			contents: "My template contents of name \(nameAttribute)"
 //		),

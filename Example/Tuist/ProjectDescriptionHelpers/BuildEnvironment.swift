@@ -26,13 +26,13 @@ public enum BuildEnvironment: String, CaseIterable {
 		let mindLinkKey = Environment.mindLinkKey.getString(default: "---")
 
 		let secrets: ProjectDescription.SettingsDictionary = [
-			"ELDER_BRAIN_URL":.string(elderBrainURL),
+			"ELDER_BRAIN_URL": .string(elderBrainURL),
 			"MIND_LINK_KEY": .string(mindLinkKey)
 		]
-		
+
 		switch self {
 		case .debug:
-			return.debug(name: configurationName, settings: secrets, xcconfig: targetConfigPath)
+			return .debug(name: configurationName, settings: secrets, xcconfig: targetConfigPath)
 		case .release:
 			return .release(name: configurationName, settings: secrets, xcconfig: targetConfigPath)
 		case .beta:
@@ -52,6 +52,6 @@ public enum BuildEnvironment: String, CaseIterable {
 	}
 }
 
-extension StringProtocol {
-	public var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
+public extension StringProtocol {
+	var firstUppercased: String { prefix(1).uppercased() + dropFirst() }
 }

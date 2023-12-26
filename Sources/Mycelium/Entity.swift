@@ -1,6 +1,6 @@
 
 open class Entity<ID, Event: DomainEvent>: Identifiable {
-	let id: ID
+	public let id: ID
 	var internalEvents: [Event] = []
 	
 	public var events: [Event] {
