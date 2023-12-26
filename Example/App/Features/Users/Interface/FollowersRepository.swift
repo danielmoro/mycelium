@@ -1,4 +1,4 @@
 public protocol FollowersRepository {
-	func isUser(_ user: UserID, alreadyFollowingUser followedUserID: UserID) async -> Bool
+	func check(_ user: UserID, isFollowing otherUser: UserID) async -> Bool
 	func create(follower: Follower) async
 }

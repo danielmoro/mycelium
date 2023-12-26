@@ -14,7 +14,7 @@ final class FollowerService {
 		self.followersRepository = followersRepository
 	}
 
-	func user(_ user: UserEntity, startFollowing followed: UserEntity, on date: Date) async throws {
+	func startFollowing(_ followed: UserEntity, by user: UserEntity, on date: Date) async throws {
 		guard user.id != followed.id else {
 			throw Error.cannotFollowSelf
 		}
@@ -23,7 +23,7 @@ final class FollowerService {
 			throw Error.cannotFollowNonPublicUser
 		}
 
-		guard await followersRepository.isUser(user.id, alreadyFollowingUser: followed.id) else {
+		guard await followersRepository.check(user.id, isFollowing: followed.id) else {
 			throw Error.alreadyFollowing
 		}
 
